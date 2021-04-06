@@ -1,7 +1,23 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import Antd from 'ant-design-vue'
+import Antd,
+{
+Button,
+Input,
+Select,
+Radio,
+Checkbox,
+DatePicker,
+TimePicker,
+Rate,
+Upload,
+Breadcrumb,
+Table,
+Pagination,
+Icon,
+Form
+} from 'ant-design-vue'
 import Moment from 'moment'
 import 'ant-design-vue/dist/antd.css'
 import store from './store'
@@ -10,10 +26,16 @@ import zhLocale from 'ant-design-vue/lib/locale/zh_CN'
 import formCreate from "@form-create/ant-design-vue"
 import './assets/css/common.less'
 
+import {transformComponent} from "./utils/component";
+
 Vue.config.productionTip = false
 Vue.use(Antd,{zhLocale})
 Vue.use(formCreate);
 Vue.prototype.$moment = Moment
+
+// 注册所有组件为海数自己内部组件
+transformComponent(Vue)
+
 new Vue({
   router,
   store,

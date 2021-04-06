@@ -4,7 +4,7 @@
       <template>
         <div v-if="!searchOption.button"></div>
         <div v-if="searchOption.button">
-          <HSButton
+          <HSButtons
             v-for="(option) in searchOption.button"
             :uniqueKey="option.key"
             :type="option.type"
@@ -36,7 +36,7 @@
                   :label="`${data.label}`"
                   :labelCol="data.labelCol?data.labelCol:labelCol"
                   :wrapperCol="data.wrapperCol?data.wrapperCol:wrapperCol">
-                  <a-input
+                  <HSInput
                     v-if="data.type=='input'"
                     v-decorator="[
                             `${data.key}`,
@@ -45,21 +45,21 @@
                             },
                           ]"
                     :placeholder="data.placeholder"/>
-                  <a-select
+                  <HSelect
                     v-decorator="[
                             `${data.key}`,
                           ]"
                     v-if="data.type=='select'"
                     @change="data.onChange"
                     :placeholder="data.placeholder">
-                    <a-select-option
+                    <HSelectOption
                       v-for="(option) in data.items"
                       :key="option.key"
                       :value="data.setValue?option[data.setValue]:option.value">
                       {{data.setKey?option[data.setKey]:option.key }}
-                    </a-select-option>
-                  </a-select>
-                  <a-date-picker
+                    </HSelectOption>
+                  </HSelect>
+                  <HSDatePicker
                     v-decorator="[
                             `${data.key}`,
                           ]"
@@ -67,7 +67,7 @@
                     @change="data.onChange"
                     :placeholder="data.placeholder"
                   />
-                  <a-range-picker
+                  <HSRangePicker
                     v-decorator="[
                             `${data.key}`,
                           ]"
@@ -75,29 +75,29 @@
                     @change="data.onChange"
                     :placeholder="data.placeholder"
                   />
-                  <a-radio-group
+                  <HSRadioGroup
                     v-decorator="[
                             `${data.key}`,]"
                     v-if="data.type=='radio'"
                     @change="data.onChange">
-                    <a-radio
+                    <HSRadio
                       v-for="(option) in data.items"
                       :value="data.setValue?option[data.setValue]:option.value"
                       :key="data.setKey?option[data.setKey]:option.label">
                       {{data.setKey?option[data.setKey]:option.label}}
-                    </a-radio>
-                  </a-radio-group>
+                    </HSRadio>
+                  </HSRadioGroup>
                 </a-form-item>
               </a-col>
             </a-row>
             <a-row>
               <a-col :span="24" :style="{ textAlign: 'right' }">
-                <a-button type="primary" html-type="submit" icon="search">
+                <HSButton type="primary" html-type="submit" icon="search">
                   搜索
-                </a-button>
-                <a-button :style="{ marginLeft: '8px' }" @click="advancedSearchOption.handleReset" icon="undo">
+                </HSButton>
+                <HSButton :style="{ marginLeft: '8px' }" @click="advancedSearchOption.handleReset" icon="undo">
                   重置
-                </a-button>
+                </HSButton>
               </a-col>
             </a-row>
           </a-form>
@@ -105,20 +105,20 @@
             <div class="current">
               <div v-if="advancedSearchOption.changedFields!=null">当前选择：</div>
               <template  v-for="(current) in advancedSearchOption.changedFields">
-                <a-button
+                <HSButton
                   @click="advancedSearchOption.handleConditionClick($event,current)"
                   class="condition-item"
                   v-if="current.name&&current.value!=''"
-                  :key="current.value">{{current.value}}<a-icon type="close" />
-                </a-button>
+                  :key="current.value">{{current.value}}<HSIcon type="close" />
+                </HSButton>
               </template>
             </div>
-            <a-button slot="extra" type="link" :style="{height:'unset',padding:0}">高级搜索</a-button>
+            <HSButton slot="extra" type="link" :style="{height:'unset',padding:0}">高级搜索</HSButton>
           </div>
         </a-collapse-panel>
       </a-collapse>
     </div>
-    <a-table
+    <HSTable
       size="small"
       class="com-table"
       :columns="tableData.columns"
@@ -136,8 +136,8 @@
       <div slot="putawayStatus" slot-scope="scope">
         <slot name="putawayStatus" :status="scope"></slot>
       </div>
-    </a-table>
-    <a-pagination
+    </HSTable>
+    <HSPagination
       v-if="tableData.pagination"
       class="com-page"
       show-quick-jumper
@@ -154,13 +154,11 @@
 <script>
 
 import { mapGetters } from 'vuex'   // 引入vuex
-import HSButton from './HSButton'
+import HSButtons from './HSButton'
 import HSInputSearch from './HSInputSearch'
-import HSInput from './HSInput'
 export default {
   components: {
-    HSButton,
-    HSInput,
+    HSButtons,
     HSInputSearch
   },
   props: ['searchOption','advancedSearchOption',"tableData",'loading',"initValues"],

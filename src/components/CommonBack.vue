@@ -2,8 +2,8 @@
   <div class="page-back">
     <h2>这是标题</h2>
     <div>
-      <a-button v-if="handleSave" type="primary" @click="handleSave"> <a-icon type="plus-circle" />保存</a-button>
-      <a-button v-if="handleBack"  @click="handleBack"> <a-icon type="left" />返回</a-button>
+      <HSButton v-if="handleSave" type="primary" @click="handleSave"> <a-icon type="plus-circle" />保存</HSButton>
+      <HSButton v-if="handleBack"  @click="handleBack"> <a-icon type="left" />返回</HSButton>
     </div>
   </div>
 </template>

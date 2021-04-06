@@ -8,9 +8,9 @@
         :initValues="formInitValues"
         :loading="loading">
         <template slot-scope="row" slot="action">
-          <a-button type="primary" size="small" ghost @click="showPopup(row,'preview')">查看</a-button>
-          <a-button type="primary" size="small" ghost @click="showPopup(row,'edit')">编辑</a-button>
-          <a-button type="primary" size="small" ghost @click="delFn(row)">删除</a-button>
+          <HSButton type="primary" size="small" ghost @click="showPopup(row,'preview')">查看</HSButton>
+          <HSButton type="primary" size="small" ghost @click="showPopup(row,'edit')">编辑</HSButton>
+          <HSButton type="primary" size="small" ghost @click="delFn(row)">删除</HSButton>
         </template>
         <span slot="pic" slot-scope="row">
           <img style="width:40px;height:40px" :src="row.path"/>
@@ -24,7 +24,6 @@
 </template>
 <script>
 import {CommonSearchTable} from "@/components";
-
 const auditStatusList=[{key:'全部',value:null},
   {key:'审核通过',value:'1'},
   {key:'待审核',value:'0'}]

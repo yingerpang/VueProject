@@ -1,5 +1,4 @@
 <template>
-  <div>
       <a-input
         :key="uniqueKey"
         :addonAfter="addonAfter"
@@ -12,19 +11,17 @@
         :size="size"
         :suffix="suffix"
         :type="type"
-        :value="value"
+
         :allowClear="allowClear"
         :placeholder="placeholder"
         :v-decorator="decorator"
-        @change="this.handleChange"
-        @pressEnter="this.handleChange"
+
       />
-  </div>
 </template>
 
 <script>
 export default {
-  name: 'inputs',
+  name: 'HSinput',
   props: {
     //attr:
     uniqueKey:{},

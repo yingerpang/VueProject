@@ -3,7 +3,7 @@
       <CommonBack :handleBack="handleBack" :handleSave="type!='preview'?handleSubmit:null"/>
       <div class="content">
         <CommonTitle title='基本信息'/>
-        <a-form class="ant-advanced-search-form" :form="form" @submit="handleSubmit">
+        <HSForm class="ant-advanced-search-form" :form="form" @submit="handleSubmit">
           <a-row :gutter="24">
             <a-col
               v-for="(data) in filedsList"
@@ -13,7 +13,7 @@
                 :label="`${data.label}`"
                 :labelCol="data.labelCol"
                 :wrapperCol="data.wrapperCol">
-                <a-input
+                <HSInput
                   v-if="data.type=='input'"
                   :disabled="data.disabled"
                   v-decorator="[
@@ -23,7 +23,7 @@
                             },
                           ]"
                   :placeholder="data.placeholder"/>
-                <a-select
+                <HSelect
                   :disabled="data.disabled"
                   v-decorator="[
                             `${data.key}`,
@@ -31,26 +31,26 @@
                   v-if="data.type=='select'"
                   @change="data.onChange"
                   :placeholder="data.placeholder">
-                  <a-select-option
+                  <HSelectOption
                     v-for="(option) in data.items"
                     :key="JSON.stringify(option)"
                     :value="option.value">
                     {{ option.label }}
-                  </a-select-option>
-                </a-select>
-                <a-radio-group
+                  </HSelectOption>
+                </HSelect>
+                <HSRadioGroup
                   v-decorator="[
                             `${data.key}`,]"
                   v-if="data.type=='radio'"
                   @change="data.onChange"
                   :disabled="data.disabled"
                 >
-                  <a-radio v-for="(option) in data.items" :value="option.value" :key="JSON.stringify(option)">
+                  <HSRadio v-for="(option) in data.items" :value="option.value" :key="JSON.stringify(option)">
                     {{option.label}}
-                  </a-radio>
-                </a-radio-group>
+                  </HSRadio>
+                </HSRadioGroup>
                 <template v-if="data.type=='upload'">
-                  <a-upload
+                  <HSUpload
                     :disabled="data.disabled"
                     v-decorator="[
                       `${data.key}`,
@@ -65,17 +65,17 @@
                     @preview="handlePreview"
                     @change="handleChange">
                     <div v-if="fileList.length < 8">
-                      <a-icon type="plus" />
+                      <HSIcon type="plus" />
                       <div class="ant-upload-text">
                         Upload
                       </div>
                     </div>
-                  </a-upload>
+                  </HSUpload>
                 </template>
               </a-form-item>
             </a-col>
           </a-row>
-        </a-form>
+        </HSForm>
       </div>
 
     </div>
