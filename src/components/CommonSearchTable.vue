@@ -131,12 +131,6 @@
       <div slot="action" slot-scope="scope" >
         <slot name="action" :data="scope"></slot>
       </div>
-      <div slot="pic" slot-scope="scope">
-        <slot name="pic" :path="scope"></slot>
-      </div>
-      <div slot="putawayStatus" slot-scope="scope">
-        <slot name="putawayStatus" :status="scope"></slot>
-      </div>
     </HSTable>
     <HSPagination
       v-if="tableData.pagination"

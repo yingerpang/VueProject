@@ -7,7 +7,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('../pages')
+    component: () => import('../pages/index')
   },
   {
     path: '/company/list/operation/:type/:id?',
