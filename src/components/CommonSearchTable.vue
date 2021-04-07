@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <div class="table-operations" v-if='searchOption'>
-      <template>
+    <div class="table-operations">
+      <div v-if='searchOption'>
         <div v-if="!searchOption.button"></div>
         <div v-if="searchOption.button">
           <HSButtons
@@ -12,8 +12,8 @@
             :icon="option.icon"
             :name="option.name" />
         </div>
-      </template>
-      <template v-if="searchOption.searchInput">
+      </div>
+      <div v-if="searchOption&&searchOption.searchInput">
         <HSInputSearch
           v-for="(option) in searchOption.searchInput"
           :uniqueKey="option.key"
@@ -21,7 +21,7 @@
           :change="option.change"
           :pressEnter="option.pressEnter"
           :placeholder="option.placeholder" />
-      </template>
+      </div>
     </div>
     <div class="advanced-search-box" v-if="advancedSearchOption">
       <a-collapse :expand-icon-position="expandIconPosition">
@@ -126,6 +126,7 @@
       :pagination="false"
       :rowKey="tableData.rowKey"
       :loading="loading"
+      :width="tableData.width"
       bordered>
       <div slot="action" slot-scope="scope" >
         <slot name="action" :data="scope"></slot>
@@ -156,6 +157,8 @@
 import { mapGetters } from 'vuex'   // 引入vuex
 import HSButtons from './HSButton'
 import HSInputSearch from './HSInputSearch'
+
+
 export default {
   components: {
     HSButtons,
@@ -230,7 +233,7 @@ export default {
   .table-operations{
     display: flex;
     justify-content: space-between;
-    margin: 20px 0;
+    min-height: 50px;
     .search{
       width:300px;
     }

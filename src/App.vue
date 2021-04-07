@@ -4,10 +4,10 @@
       <a-layout class="layout-content-box">
         <a-layout-content>
           <a-layout class="bread-header">
-            <a-breadcrumb>
-              <a-breadcrumb-item>标题1</a-breadcrumb-item>
-              <a-breadcrumb-item><a href="">标题2</a></a-breadcrumb-item>
-            </a-breadcrumb>
+            <HSBreadcrumb>
+              <HSBreadcrumbItem>标题1</HSBreadcrumbItem>
+              <HSBreadcrumbItem><a href="">标题2</a></HSBreadcrumbItem>
+            </HSBreadcrumb>
           </a-layout>
           <div class="layout-content">
             <a-config-provider :locale="locale">
@@ -27,7 +27,11 @@
 */
 import { mapActions } from 'vuex'
 import zhCN from 'ant-design-vue/lib/locale-provider/zh_CN'
+
+
 export default {
+  components: {
+  },
   data() {
     return {
       locale:zhCN
@@ -46,7 +50,7 @@ export default {
   }
 }
 </script>
-<style lang="less" scoped>
+<style lang="less">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -56,6 +60,9 @@ export default {
   display: flex;
   .layout-header{
     height: 48px;
+  }
+  .layout-content{
+    background: white;
   }
   .layout-content-box{
     flex: 1;
@@ -75,6 +82,9 @@ export default {
       overflow-y: auto;
       flex: 1;
     }
+  }
+  .ant-layout{
+    background: unset !important;
   }
 }
 </style>
