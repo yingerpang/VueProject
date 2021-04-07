@@ -105,12 +105,14 @@
             <div class="current">
               <div v-if="advancedSearchOption.changedFields!=null">当前选择：</div>
               <template  v-for="(current) in advancedSearchOption.changedFields">
-                <HSButton
-                  @click="advancedSearchOption.handleConditionClick($event,current)"
-                  class="condition-item"
-                  v-if="current.name&&current.value!=''"
-                  :key="current.value">{{current.value}}<HSIcon type="close" />
-                </HSButton>
+                <template v-if="current.value!='全部'">
+                  <HSButton
+                    @click="advancedSearchOption.handleConditionClick($event,current)"
+                    class="condition-item"
+                    v-if="current.name&&current.value!=''"
+                    :key="current.value">{{current.value}}<HSIcon type="close" />
+                  </HSButton>
+                </template>
               </template>
             </div>
             <HSButton slot="extra" type="link" :style="{height:'unset',padding:0}">高级搜索</HSButton>

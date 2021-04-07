@@ -266,8 +266,7 @@ import {mapGetters, mapMutations,} from "vuex";
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    border: 10px solid #f0f2f5;
+    border: 7px solid #f0f2f5;
     border-bottom: none;
-
   }
 </style>
