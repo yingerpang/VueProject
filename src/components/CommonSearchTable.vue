@@ -128,7 +128,7 @@
       :pagination="false"
       :rowKey="tableData.rowKey"
       :loading="loading"
-      :width="tableData.width"
+      :scroll="tableData.scroll"
       bordered>
       <div slot="action" slot-scope="scope" >
         <slot name="action" :data="scope"></slot>

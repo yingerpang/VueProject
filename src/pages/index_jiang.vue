@@ -61,7 +61,6 @@ export default {
           }
         ]
       },
-
       loading:true,
       tableData:{
         columns: [
@@ -69,38 +68,43 @@ export default {
             title: '产品编码',
             dataIndex: 'id',
             key: 'id',
-            width:150
+            width:150,
+            ellipsis:true,
           },
           {
             title: '产品名称',
             dataIndex: 'productName',
             key: 'productName',
-            width:200
+            width:150,
+            ellipsis:true,
           },
           {
             title: '产品分类',
             dataIndex: 'productClass2Name',
             key: 'productClass2Name',
-            width:200
+            width:150,
+            ellipsis:true,
           },
           {
             title: '产品供应商',
             dataIndex: 'supplierName',
             key: 'supplierName',
-            width:200
+            width:150,
+            ellipsis:true,
           },
           {
             title: '最后修改时间',
             dataIndex: 'updateTime',
             key: 'updateTime',
-            width:200
+            width:150,
+            ellipsis:true,
           },
           {
             title: '操作',
             dataIndex: '',
             key: 'action',
-            width:200,
-            scopedSlots: {customRender:'action'}
+            width:300,
+            scopedSlots: {customRender:'action'},
           }
         ],
         list: [],
@@ -110,7 +114,7 @@ export default {
           page:1,
           size:10,
         },
-        width:300,
+        scroll:{ x: 800, y: 300 },
         totalElements:0,
         handleDelItem:this.requestList,
         rowKey:"id"
@@ -146,7 +150,12 @@ export default {
   computed: {
   },
   created() {
-
+    const {params}=this.tableData;
+    this.requestList(params);
+    this.$store.dispatch('product/supplierProduct').then(res=>{
+      const {data}=res;
+      supplierList.push(...data)
+    })
   }
 }
 </script>
